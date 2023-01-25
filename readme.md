@@ -1,11 +1,11 @@
-# RickyABF backend (Node JS)
+# RickyABC backend (Node JS)
 
 ## create an .env
 
 - NODE_ENV=production
-- PORT
-- MONGO_URI
-- JWT_SECRET
+- PORT=any valid ports
+- MONGO_URI=mongoo db url 
+- JWT_SECRET=secret to encrypt/decrypt tokens
 
 ### Install dependencies
 
