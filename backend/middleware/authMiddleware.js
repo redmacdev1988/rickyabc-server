@@ -2,15 +2,16 @@ const jwt = require('jsonwebtoken')
 const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
 
-
 const adminOnly = asyncHandler(async (req, res, next) => {
+  console.log('- adminOnly - async handler');
   let token
 
+  console.log(req.headers.authorization);
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
-
+    console.log('admin token approved √');
     try {
       // Get token from header
       token = req.headers.authorization.split(' ')[1]
@@ -21,8 +22,9 @@ const adminOnly = asyncHandler(async (req, res, next) => {
       req.user = await User.findById(decoded.id).select('-password')
       const {username} = req.user;
       if (username === 'admin' || username === 'root' || username ==='rickyabc') {
+        console.log('user is admin...next()');
         next()
-      } else {
+      } else {ode 
         throw new Error(`User ${username} not authorized`);
       }
     } catch (error) {

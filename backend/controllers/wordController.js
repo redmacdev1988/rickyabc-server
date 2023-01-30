@@ -52,7 +52,7 @@ const updateWord = asyncHandler(async (req, res) => {
     const updatedWord = await Word.findOneAndUpdate(filter, req.body, {
       new: true
     });
-
+    
     res.status(200).json(updatedWord)
 })
 

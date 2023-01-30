@@ -6,6 +6,8 @@ const dotenv = require('dotenv').config();
 const { errorHandler } = require('./middleware/errorMiddleware');
 const connectDB = require('./config/db');
 const port = process.env.PORT || 5000;
+const imageupload = require('express-fileupload');
+const { protect } = require('./middleware/authMiddleware');
 
 connectDB();
 
@@ -13,10 +15,14 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(imageupload());
 app.use(cors());
 app.use('/api/goals', require('./routes/goalRoutes'));
 app.use('/api/words', require('./routes/wordRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/upload', require('./routes/fileRoutes'));
+app.use('/api/images', require('./routes/imageRoutes'));
+// app.use(protect, express.static('public'));
 
 // Serve frontend
 if (process.env.NODE_ENV === 'production') {
