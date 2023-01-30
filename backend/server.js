@@ -21,8 +21,12 @@ app.use('/api/goals', require('./routes/goalRoutes'));
 app.use('/api/words', require('./routes/wordRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/upload', require('./routes/fileRoutes'));
-app.use('/api/images', require('./routes/imageRoutes'));
-// app.use(protect, express.static('public'));
+
+// for getting images in base64
+app.use('/api/images', require('./routes/imageRoutes')); 
+
+// for getting audio in base 64
+app.use('/api/audio', require('./routes/audioRoutes'));
 
 // Serve frontend
 if (process.env.NODE_ENV === 'production') {

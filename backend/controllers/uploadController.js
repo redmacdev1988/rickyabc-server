@@ -24,6 +24,24 @@ const uploadAnImageFile = asyncHandler(async (req, res) => {
     } 
 })
 
+const uploadAnAudioFile = asyncHandler(async (req, res) => {
+  console.log('entered uploadAnAudioFile function √');
+  if (req.files) {
+    const { name, data } = req.files.file;
+    console.log(`name: ${name}`);
+    let filename = `${savePath}/${name}`;
+    console.log('filename: ', filename);
+
+    await fs.writeFile(filename, data, "binary", (err) => {
+      if (!err) {
+        console.log(`file saved to ${filename}`);
+      }
+    });
+    res.json({"msg":"ok"});
+  } 
+})
+
 module.exports = {
-  uploadAnImageFile
+  uploadAnImageFile,
+  uploadAnAudioFile
 }
