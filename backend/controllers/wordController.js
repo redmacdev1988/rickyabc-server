@@ -6,8 +6,7 @@ const Word = require('../models/wordModel')
 // @route   GET /api/word
 // @access  Private
 const getWord = asyncHandler(async (req, res) => {
-  console.log('getWorld', req.params.date);
-  const word = await Word.find({ date: req.params.date })
+  const word = await Word.find({ date: req.params.date }).lean()
   res.status(200).json(word)
 })
 
@@ -25,8 +24,8 @@ const setWord = asyncHandler(async (req, res) => {
     definition: req.body.definition,
     wordClass: req.body.wordClass,
     image: req.body.image,
-    audioPronounceURL: req.body.audioPronounceURL,
-    audioExampleUrlArr: req.body.examplesURL
+    audioFileName: req.body.audioFileName,
+    exampleArr: req.body.exampleArr
   })
   res.status(200).json(word)
 })
@@ -60,22 +59,21 @@ const updateWord = asyncHandler(async (req, res) => {
 // @route   DELETE /api/word/:id
 // @access  Private
 const deleteWord = asyncHandler(async (req, res) => {
-  const date = req.body.date;
-  console.log(date);
+  const date = req.params.date
   const wordInDB = await Word.find({ date })
   if (!wordInDB) {
       res.status(400)
       throw new Error('Word not found')
   }
-  console.log('word in db: ', wordInDB)
+
   await Word.findOneAndRemove({ date }, function(err, docs) {
     if (err) {
       console.log(err);
     } else {
-      console.log('removed user: ', docs);
+      console.log('√ Deleted word for date: ', date);
     }
   });
-  res.status(200).json({ wordInDB })
+  res.status(200).json({ message:  `√ Deleted word for date: ${date}`, })
 })
 
 const insertExample = asyncHandler(async (req, res) => {

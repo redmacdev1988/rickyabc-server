@@ -1,10 +1,13 @@
 const mongoose = require('mongoose')
 
 const ExampleSchema = mongoose.Schema({
+    itemId: {
+      type: String,
+    },
     sentence: {
       type: String,
     },
-    audioPronounceURL: {
+    audioFileName: {
         type: String
     },
 });
@@ -29,10 +32,10 @@ const wordSchema = mongoose.Schema(
     image: {
       type: String
     },
-    audioPronounceURL: {
+    audioFileName: {
         type: String
     },
-    audioExampleUrlArr: [ExampleSchema]
+    exampleArr: [ExampleSchema]
   },
   {
     timestamps: true,

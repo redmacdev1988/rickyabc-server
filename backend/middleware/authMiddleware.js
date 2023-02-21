@@ -3,7 +3,6 @@ const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
 
 const adminOnly = asyncHandler(async (req, res, next) => {
-  console.log('- adminOnly - async handler');
   let token
 
   console.log(req.headers.authorization);
@@ -11,7 +10,6 @@ const adminOnly = asyncHandler(async (req, res, next) => {
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
-    console.log('admin token approved √');
     try {
       // Get token from header
       token = req.headers.authorization.split(' ')[1]
@@ -24,7 +22,7 @@ const adminOnly = asyncHandler(async (req, res, next) => {
       if (username === 'admin' || username === 'root' || username ==='rickyabc') {
         console.log('user is admin...next()');
         next()
-      } else {ode 
+      } else {
         throw new Error(`User ${username} not authorized`);
       }
     } catch (error) {

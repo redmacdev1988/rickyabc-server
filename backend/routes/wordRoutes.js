@@ -13,6 +13,7 @@ const { adminOnly } = require('../middleware/authMiddleware')
 router.route('/example').post(adminOnly, insertExample)
 router.route('/:date').get(getWord)
 router.route('/').post(adminOnly, setWord)
-router.route('/').delete(adminOnly, deleteWord).put(adminOnly, updateWord)
+router.route('/:date').delete(adminOnly, deleteWord)
+router.route('/').put(adminOnly, updateWord)
 
 module.exports = router

@@ -7,13 +7,9 @@ const savePath = path.resolve() + '/files';
 console.log(savePath);
 
 const uploadAnImageFile = asyncHandler(async (req, res) => {
-    console.log('entered uploadAnImageFile function √');
     if (req.files) {
-      console.log(req.files.file);
       const { name, data } = req.files.file;
-      console.log(`name: ${name}`);
       let filename = `${savePath}/${name}`;
-      console.log('filename: ', filename);
 
       await fs.writeFile(filename, data, "binary", (err) => {
         if (!err) {
@@ -25,12 +21,9 @@ const uploadAnImageFile = asyncHandler(async (req, res) => {
 })
 
 const uploadAnAudioFile = asyncHandler(async (req, res) => {
-  console.log('entered uploadAnAudioFile function √');
   if (req.files) {
     const { name, data } = req.files.file;
-    console.log(`name: ${name}`);
     let filename = `${savePath}/${name}`;
-    console.log('filename: ', filename);
 
     await fs.writeFile(filename, data, "binary", (err) => {
       if (!err) {
