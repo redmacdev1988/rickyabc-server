@@ -10,6 +10,9 @@ const ExampleSchema = mongoose.Schema({
     audioFileName: {
         type: String
     },
+    imageFileName: {
+      type: String
+    }
 });
 
 const wordSchema = mongoose.Schema(
@@ -29,7 +32,7 @@ const wordSchema = mongoose.Schema(
     definition: {
       type: String,
     },
-    image: {
+    imageFileName: {
       type: String
     },
     audioFileName: {

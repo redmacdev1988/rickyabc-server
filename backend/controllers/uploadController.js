@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 
 const savePath = path.resolve() + '/files';
-console.log(savePath);
 
 const uploadAnImageFile = asyncHandler(async (req, res) => {
     if (req.files) {
