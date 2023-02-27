@@ -23,7 +23,7 @@ const setWord = asyncHandler(async (req, res) => {
     word: req.body.word,
     definition: req.body.definition,
     wordClass: req.body.wordClass,
-    image: req.body.image,
+    imageFileName: req.body.imageFileName,
     audioFileName: req.body.audioFileName,
     exampleArr: req.body.exampleArr
   })
