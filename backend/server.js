@@ -28,6 +28,9 @@ app.use('/api/image', require('./routes/imageRoutes'));
 // for getting audio in base 64
 app.use('/api/audio', require('./routes/audioRoutes'));
 
+app.get('/', (req, res) => {
+    res.send("Welcome to RickyABC API")
+});
 app.use(errorHandler);
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
